@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Service Job Card Manager (Demo)</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🔧 Job Card Manager <span class="badge">DEMO</span></div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="board">Job Cards</button>
+      <button class="tab-btn" data-tab="new">New Job Card</button>
+      <button class="tab-btn" data-tab="mechanics">Mechanics</button>
+    </nav>
+  </div>
+
+  <div class="container">
+
+    <!-- BOARD -->
+    <section id="tab-board" class="tab-panel">
+      <div class="board" id="board">
+        <div class="board-col" data-status="Booked"><h3>Booked</h3><div class="col-cards" id="col-Booked"></div></div>
+        <div class="board-col" data-status="In Progress"><h3>In Progress</h3><div class="col-cards" id="col-In Progress"></div></div>
+        <div class="board-col" data-status="Ready for Delivery"><h3>Ready for Delivery</h3><div class="col-cards" id="col-Ready for Delivery"></div></div>
+        <div class="board-col" data-status="Delivered"><h3>Delivered</h3><div class="col-cards" id="col-Delivered"></div></div>
+      </div>
+    </section>
+
+    <!-- NEW JOB CARD -->
+    <section id="tab-new" class="tab-panel" style="display:none;">
+      <div class="card">
+        <h3>New Job Card</h3>
+        <div class="form-grid">
+          <input type="text" id="jc-customer" placeholder="Customer name" />
+          <input type="text" id="jc-phone" placeholder="Phone" />
+          <input type="text" id="jc-vehicle" placeholder="Vehicle (model)" />
+          <input type="text" id="jc-reg" placeholder="Registration No." />
+          <select id="jc-mechanic"></select>
+          <input type="date" id="jc-date" />
+        </div>
+        <textarea id="jc-issue" placeholder="Reported problem / service requested" rows="3" style="width:100%;margin-top:10px;"></textarea>
+        <button id="btn-create-jc" style="margin-top:12px;">Create Job Card</button>
+        <p class="muted" id="jc-msg"></p>
+      </div>
+    </section>
+
+    <!-- MECHANICS -->
+    <section id="tab-mechanics" class="tab-panel" style="display:none;">
+      <div class="card">
+        <h3>Mechanics</h3>
+        <div class="form-row">
+          <input type="text" id="mech-name" placeholder="Mechanic name" />
+          <button id="btn-add-mech">Add</button>
+        </div>
+        <table id="mech-table">
+          <thead><tr><th>Name</th><th>Active Jobs</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Job card detail modal -->
+  <div id="modal-backdrop" class="modal-backdrop" style="display:none;">
+    <div class="modal card" id="modal-content"></div>
+  </div>
+
+  <div class="app-footer">
+    Demo project by <strong>Hassan Ansari</strong> ·
+    <a href="https://github.com/iam-hassan-ansari" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

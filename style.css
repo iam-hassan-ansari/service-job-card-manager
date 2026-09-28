@@ -1,0 +1,139 @@
+/* ===== Shared dark theme — reused across all Hassan Ansari demo projects ===== */
+:root {
+  --bg: #0b1220;
+  --surface: #121a2b;
+  --surface-2: #1a2438;
+  --text: #e6ebf5;
+  --muted: #93a0b8;
+  --primary: #3ba7ff;
+  --primary-dark: #2b86d1;
+  --accent: #22d3ee;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --border: #24304a;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'Consolas', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+}
+
+a { color: var(--primary); }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.topbar .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+.topbar .badge {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  background: var(--warning); color: #1a1200; padding: 3px 8px; border-radius: 6px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+button, .btn {
+  font-family: var(--font);
+  background: var(--primary);
+  color: #071322;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .05s ease, background .15s ease;
+}
+button:hover, .btn:hover { background: var(--primary-dark); }
+button:active, .btn:active { transform: scale(.98); }
+button.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+button.danger { background: var(--danger); color: #fff; }
+
+input, select, textarea {
+  font-family: var(--font);
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; font-size: 14px; }
+th { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: .04em; }
+
+.app-footer {
+  text-align: center;
+  padding: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+.app-footer a { color: var(--accent); text-decoration: none; }
+.app-footer a:hover { text-decoration: underline; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 18px; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* ===== Job Card Manager specific ===== */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab-btn { background: transparent; color: var(--muted); border: 1px solid transparent; padding: 8px 14px; font-weight: 600; font-size: 14px; }
+.tab-btn:hover { color: var(--text); background: var(--surface-2); }
+.tab-btn.active { color: #071322; background: var(--primary); }
+
+.board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: start; }
+.board-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; min-height: 200px; }
+.board-col h3 { margin: 4px 0 12px; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.col-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.jc-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; transition: border-color .15s; }
+.jc-card:hover { border-color: var(--primary); }
+.jc-card .jc-title { font-weight: 700; margin-bottom: 4px; }
+.jc-card .jc-sub { color: var(--muted); font-size: 12px; }
+.jc-card .jc-mech { margin-top: 8px; font-size: 12px; color: var(--accent); }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px; }
+.modal { max-width: 560px; width: 100%; max-height: 85vh; overflow-y: auto; }
+.modal h3 { margin-top: 0; }
+.status-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.status-row button { font-size: 12px; padding: 6px 10px; }
+.status-row button.current { outline: 2px solid var(--accent); }
+
+.line-form { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.line-form input { flex: 1; min-width: 90px; }
+
+.close-btn { float: right; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); }
+
+@media (max-width: 900px) {
+  .board { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .board { grid-template-columns: 1fr; }
+}
