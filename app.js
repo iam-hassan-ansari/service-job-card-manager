@@ -15,7 +15,7 @@ function load(key, fallback) {
 }
 function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-function money(n) { return "₹" + Number(n).toLocaleString("en-IN"); }
+function money(n) { return "INR " + Number(n).toLocaleString("en-IN"); }
 
 const STATUSES = ["Booked", "In Progress", "Ready for Delivery", "Delivered"];
 
@@ -113,9 +113,9 @@ function renderBoard() {
       div.className = "jc-card";
       div.dataset.id = j.id;
       div.innerHTML = `
-        <div class="jc-title">${j.jcNo} — ${j.vehicle}</div>
-        <div class="jc-sub">${j.customer} · ${j.reg || "no reg"}</div>
-        <div class="jc-mech">👨‍🔧 ${mechName(j.mechanicId)}</div>`;
+        <div class="jc-title">${j.jcNo} - ${j.vehicle}</div>
+        <div class="jc-sub">${j.customer} - ${j.reg || "no reg"}</div>
+        <div class="jc-mech">Mechanic: ${mechName(j.mechanicId)}</div>`;
       div.addEventListener("click", () => openModal(j.id));
       col.appendChild(div);
     });
@@ -138,15 +138,15 @@ function openModal(jobId) {
   function draw() {
     const partsRows = job.parts.map((p, i) =>
       `<tr><td>${p.name}</td><td>${p.qty}</td><td>${money(p.price)}</td><td>${money(p.qty * p.price)}</td>
-       <td><button class="danger" data-action="del-part" data-idx="${i}">✕</button></td></tr>`).join("");
+       <td><button class="danger" data-action="del-part" data-idx="${i}">X</button></td></tr>`).join("");
     const labourRows = job.labour.map((l, i) =>
       `<tr><td>${l.desc}</td><td colspan="2"></td><td>${money(l.amount)}</td>
-       <td><button class="danger" data-action="del-labour" data-idx="${i}">✕</button></td></tr>`).join("");
+       <td><button class="danger" data-action="del-labour" data-idx="${i}">X</button></td></tr>`).join("");
 
     content.innerHTML = `
-      <button class="close-btn" data-action="close">✕ Close</button>
-      <h3>${job.jcNo} — ${job.vehicle} (${job.reg || "no reg"})</h3>
-      <p class="muted">${job.customer} · ${job.phone} · Booked ${job.date}</p>
+      <button class="close-btn" data-action="close">X Close</button>
+      <h3>${job.jcNo} - ${job.vehicle} (${job.reg || "no reg"})</h3>
+      <p class="muted">${job.customer} - ${job.phone} - Booked ${job.date}</p>
       <p>${job.issue ? job.issue : "<em>No issue description.</em>"}</p>
 
       <div class="status-row">
@@ -159,7 +159,7 @@ function openModal(jobId) {
       <div class="line-form">
         <input type="text" id="part-name" placeholder="Part name" />
         <input type="number" id="part-qty" placeholder="Qty" value="1" min="1" />
-        <input type="number" id="part-price" placeholder="Price ₹" />
+        <input type="number" id="part-price" placeholder="Price INR " />
         <button data-action="add-part">Add Part</button>
       </div>
 
@@ -168,7 +168,7 @@ function openModal(jobId) {
       <tbody>${labourRows || `<tr><td colspan="5" class="muted">No labour charges added.</td></tr>`}</tbody></table>
       <div class="line-form">
         <input type="text" id="labour-desc" placeholder="e.g. Engine oil change" />
-        <input type="number" id="labour-amount" placeholder="Amount ₹" />
+        <input type="number" id="labour-amount" placeholder="Amount INR " />
         <button data-action="add-labour">Add Labour</button>
       </div>
 
